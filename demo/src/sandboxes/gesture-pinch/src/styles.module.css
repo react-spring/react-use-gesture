@@ -1,0 +1,22 @@
+.drag {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  background-color: #ec625c;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.drag > div {
+  margin: 20%;
+  width: 60%;
+  height: 60%;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+}

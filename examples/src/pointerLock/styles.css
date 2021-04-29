@@ -1,7 +1,0 @@
-.simple > div {
-  width: 200px;
-  height: 200px;
-  background: indigo;
-  border-radius: 16px;
-  touch-action: none;
-}

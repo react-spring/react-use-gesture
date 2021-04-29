@@ -1,0 +1,10 @@
+.drag {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  background-color: #ec625c;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - stable
-cache:
-  yarn: true
-  directories:
-    - /home/travis/.dts/typescript-installs/
-script:
-  - 'yarn test'

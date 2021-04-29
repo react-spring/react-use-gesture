@@ -1,0 +1,6 @@
+export { DragGesture } from './DragGesture'
+export { PinchGesture } from './PinchGesture'
+export { WheelGesture } from './WheelGesture'
+export { ScrollGesture } from './ScrollGesture'
+export { MoveGesture } from './MoveGesture'
+export { Gesture } from './Gesture'

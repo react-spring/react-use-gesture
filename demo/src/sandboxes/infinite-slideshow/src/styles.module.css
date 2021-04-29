@@ -1,0 +1,29 @@
+.container {
+  background: #171720;
+}
+
+.main {
+  height: 400px;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 70px 100px;
+}
+
+.marker {
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 140px;
+  font-family: monospace;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+}

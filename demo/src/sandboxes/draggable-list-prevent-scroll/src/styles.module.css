@@ -1,0 +1,41 @@
+.container {
+  padding: 100px 0;
+  width: 320px;
+  margin: 0 auto;
+}
+
+.content {
+  width: 320px;
+}
+
+.content > div {
+  position: absolute;
+  width: 320px;
+  height: 80px;
+  transform-origin: 50% 50% 0px;
+  border-radius: 5px;
+  color: white;
+  line-height: 40px;
+  padding-left: 32px;
+  font-size: 14.5px;
+  background: lightblue;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  touch-action: pan-y;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.content > div:nth-child(1) {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
+.content > div:nth-child(2) {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+.content > div:nth-child(3) {
+  background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+}
+.content > div:nth-child(4) {
+  background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
+}

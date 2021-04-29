@@ -1,3 +1,14 @@
 {
-  "sandboxes": ["zuwji", "rkgzi", "v364z", "fh8r8", "fduch"]
+  "packages": ["packages/*"],
+  "sandboxes": [
+    "/demo/src/sandboxes/gesture-drag",
+    "/demo/src/sandboxes/gesture-target",
+    "/demo/src/sandboxes/gesture-nested",
+    "/demo/src/sandboxes/gesture-vanilla",
+    "/demo/src/sandboxes/gesture-pinch",
+    "/demo/src/sandboxes/gesture-pinch-multiple",
+    "/demo/src/sandboxes/gesture-three",
+    "/demo/src/sandboxes/card-zoom"
+  ],
+  "node": "14"
 }
