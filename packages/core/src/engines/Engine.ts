@@ -50,6 +50,8 @@ export abstract class Engine<Key extends GestureKey> {
 
   args: any[]
 
+  rAF_id: number = -1
+
   constructor(ctrl: Controller, args: any[], key: Key) {
     this.ctrl = ctrl
     this.args = args
@@ -177,6 +179,26 @@ export abstract class Engine<Key extends GestureKey> {
     }
     state.startTime = state.timeStamp = event.timeStamp
   }
+  queueKineticsUpdate() {
+    const updater = (timeStamp: number) => {
+      // Updates previous movement only when the timeStamp is greater as an
+      // input event may have preceded this execution
+      if (timeStamp > this.state.timeStamp) {
+        this.state.previousMovement = this.state.movement
+      }
+      this.rAF_id = -1
+    }
+    // Queues for the frame after the next
+    if (this.rAF_id === -1) {
+      this.rAF_id = requestAnimationFrame(() => {
+        this.rAF_id = requestAnimationFrame(updater)
+      })
+    }
+  }
+  cancelKineticsUpdate() {
+    cancelAnimationFrame(this.rAF_id)
+    this.rAF_id = -1
+  }
   /**
    * Computes all sorts of state attributes, including kinematics.
    * @param event
@@ -244,23 +266,28 @@ export abstract class Engine<Key extends GestureKey> {
           if (this.setup) this.setup()
         }
 
-        const previousMovement = state.movement
-        state.movement = movement
+        let previousMovement
+        if (!state.last) {
+          previousMovement = state.previousMovement = state.movement
+          state.movement = movement
+          this.queueKineticsUpdate()
+        } else {
+          this.cancelKineticsUpdate()
+          previousMovement = state.previousMovement
+        }
+
+        state.delta = V.sub(movement, previousMovement)
+        const absoluteDelta = state.delta.map(Math.abs) as Vector2
+
+        V.addTo(state.distance, absoluteDelta)
+        state.direction = state.delta.map(Math.sign) as Vector2
+
+        if (!state.first && dt > 0) {
+          // calculates kinematics unless the gesture starts or time has not passed
+          state.velocity = [absoluteDelta[0] / dt, absoluteDelta[1] / dt]
+        }
 
         this.computeOffset()
-
-        if (!state.last) {
-          state.delta = V.sub(movement, previousMovement)
-          const absoluteDelta = state.delta.map(Math.abs) as Vector2
-
-          V.addTo(state.distance, absoluteDelta)
-          state.direction = state.delta.map(Math.sign) as Vector2
-
-          if (!state.first && dt > 0) {
-            // calculates kinematics unless the gesture starts or ends
-            state.velocity = [absoluteDelta[0] / dt, absoluteDelta[1] / dt]
-          }
-        }
       }
     }
 

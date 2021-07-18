@@ -102,6 +102,10 @@ export type CommonGestureState = {
    */
   movement: Vector2
   /**
+   * Previous displacement of the current gesture.
+   */
+  previousMovement: Vector2
+  /**
    * Difference between the current movement and the previous movement.
    */
   delta: Vector2
